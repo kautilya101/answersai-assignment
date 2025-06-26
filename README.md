@@ -1,54 +1,71 @@
-# React + TypeScript + Vite
+# ⚡ Data Visualization Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern web application for visualizing and managing data related to **charging stations**, **fleet sizing**, and **parking**.  
+Built with **React**, **TypeScript**, and **Vite**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+- Modular component architecture (Cards, Navbar, Charts, Interactive Buttons/Badges, Sidebar, etc.)
+- Pages for Charging Stations, Fleet Sizing, and Parking
+- Responsive UI with reusable UI primitives
+- State management using React hooks
+- Shadcn for seamless and clean ui
+- TypeScript for type safety
+- Vite for fast development and optimized builds
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## ⚙️ Technical Decisions & Trade-offs
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- **Vite** selected for its blazing-fast development and build speed
+- **TypeScript** used for type safety and developer tooling
+- **Component-based architecture** enables reusability and clean code organization
+- **No backend integration** in this version – easier deployment, but limited real-world interactivity
+- **Minimal external dependencies** for more control and customization, at the cost of more initial effort
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## 🚧 Known Limitations
+
+- No backend/database – all data is static or mock
+- Real-time updates not supported
+
+---
+
+## 📦 Setup Instructions
+
+### Prerequisites
+
+- Node.js (v18 or higher)
+- npm (comes with Node.js)
+- React
+
+### Environment Variables
+
+No environment variables are required for the current frontend-only version.  
+If backend integration is added in the future, update this section accordingly.
+
+---
+
+### Installation
+
+```bash
+# Clone the repository
+git clone <your-repo-url>
+cd <your-project-folder>
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm run dev
+
+npm run build
+
+npm run preview
+
+
+Let me know if you want to add screenshots, demo link, or deployment instructions.
+
