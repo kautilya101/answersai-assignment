@@ -25,7 +25,7 @@ export interface EditVariablesComponentProps {
 export interface VariableItemProps {
   variable: Variable;
   onToggle: (id: string, active: boolean) => void;
-  onHover: () => void;
+  onHover: (variable: Variable) => void;
   onLeave: () => void;
   updateDescription: (desc: { heading: string; value: string }) => void
 }

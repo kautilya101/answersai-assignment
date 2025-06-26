@@ -1,23 +1,23 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "./ui/sheet";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Check, ChevronDown, ChevronUp, History, Info, Plus, Search, Sparkles } from "lucide-react";
 import { Card, CardContent } from "./ui/card";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./ui/collapsible";
-import type { VariableItemProps, EditVariablesComponentProps } from "@/types.ts";
+import type { VariableItemProps, EditVariablesComponentProps, Variable } from "@/types.ts";
 
 
 const VariableItem = ({ variable, onToggle, onHover, onLeave, updateDescription }: VariableItemProps) => {
   return (
     <div 
       className="relative"
-      onMouseEnter={onHover}
+      onMouseEnter={() => onHover(variable)}
       onMouseLeave={onLeave}
     >
       <div className={`flex items-center justify-between px-2 gap-2 rounded-full border transition-colors ${
         variable.active 
-          ? 'bg-green-800 border-green-300 text-green-300 dark:bg-green-900/30 dark:border-green-500 dark:text-green-400'
+          ? 'bg-green-900 border-green-300 text-green-300 dark:bg-green-900/30 dark:border-green-500 dark:text-green-400'
           : 'bg-zinc-800/70 border-border text-white/40'
       }`}>
         <span className="text-sm font-medium">{variable.name}</span>
@@ -48,6 +48,7 @@ const VariableItem = ({ variable, onToggle, onHover, onLeave, updateDescription 
 // Edit Variables Sheet Component
 const EditVariablesComponent = ({ isOpen, onClose, variables, onVariableToggle }: EditVariablesComponentProps) => {
   const [searchTerm, setSearchTerm] = useState('');
+  const hoverTimerRef = useRef<NodeJS.Timeout | null>(null)
   const [details, setDetails] = useState<{heading: string, value: string}>({
     heading: '',
     value: ''
@@ -56,6 +57,18 @@ const EditVariablesComponent = ({ isOpen, onClose, variables, onVariableToggle }
     primary: false,
     secondary: false
   });
+
+  const onHoverVariableItem = (variable: Variable) => {
+    hoverTimerRef.current = setTimeout(() => {
+      setDetails({heading: variable.name, value: variable.description})
+    }, 1500)
+  }
+
+  const onLeave = () => {
+    if(hoverTimerRef.current){
+      clearTimeout(hoverTimerRef.current)
+    }
+  }
 
   const toggleSection = (section : 'primary' | 'secondary') => {
     setExpandedSections(prev => ({
@@ -117,8 +130,8 @@ const EditVariablesComponent = ({ isOpen, onClose, variables, onVariableToggle }
                       key={variable.id}
                       variable={variable}
                       onToggle={(id, active) => onVariableToggle(category.id, id, active)}
-                      onHover={() => {}}
-                      onLeave={() => {}}
+                      onHover={onHoverVariableItem}
+                      onLeave={onLeave}
                       updateDescription={(value) => setDetails(value)}
                       />
                   ))}
