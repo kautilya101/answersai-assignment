@@ -15,7 +15,9 @@ import { History, Sparkles, Upload, Zap } from "lucide-react";
 
 // Tooltip component
 function CustomTooltipContent(props: TooltipProps<any, any>) {
-  const { active, payload } = props;
+  // Type assertion to ensure payload and active are accessible
+  const active = (props as any).active;
+  const payload = (props as any).payload;
   if (!active || !payload || !payload.length) return null;
 
   const { value, unsatisfiedDemand } = payload[0].payload;
